@@ -3,10 +3,11 @@
   height: 100vh;
   margin: 0;
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color: #e6f2ff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
   overflow-y: auto;
+  color: #495057;
 }
 
 .diagrama-container h2 {
@@ -27,19 +28,19 @@
 .tab {
   padding: 10px 20px;
   cursor: pointer;
-  background-color: #f1f1f1;
-  border: 1px solid #dee2e6;
+  background-color: #d4e6f9;
+  border: 1px solid #c1d9f0;
   border-bottom: none;
   border-radius: 5px 5px 0 0;
   margin-right: 5px;
   font-weight: 500;
-  color: #6c757d;
+  color: #495057;
   transition: all 0.3s ease;
 }
 
 .tab:hover {
-  background-color: #e9ecef;
-  color: #495057;
+  background-color: #c1d9f0;
+  color: #212529;
 }
 
 .tab.active {
@@ -62,10 +63,10 @@
   flex: 1;
   min-height: 500px;
   margin-top: 20px;
-  border: 1px solid #e9ecef;
+  border: 1px solid #c1d9f0;
   border-radius: 5px;
   padding: 10px;
-  background-color: #ffffff;
+  background-color: #f0f8ff;
 }
 
 /* Estilos para la sección de datos */
@@ -90,7 +91,7 @@
 .datos-seccion {
   flex: 1;
   min-width: 250px;
-  background-color: #f8f9fa;
+  background-color: #f0f8ff;
   border-radius: 5px;
   padding: 15px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -111,9 +112,10 @@
 
 .datos-lista li {
   padding: 5px 0;
-  border-bottom: 1px dashed #e9ecef;
+  border-bottom: 1px dashed #c1d9f0;
   display: flex;
   justify-content: space-between;
+  color: #495057;
 }
 
 .datos-lista li:last-child {
@@ -143,7 +145,7 @@
 .comparacion-seccion {
   flex: 1;
   min-width: 250px;
-  background-color: #f8f9fa;
+  background-color: #f0f8ff;
   border-radius: 5px;
   padding: 15px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -164,7 +166,8 @@
 
 .comparacion-lista li {
   padding: 5px 0;
-  border-bottom: 1px dashed #e9ecef;
+  border-bottom: 1px dashed #c1d9f0;
+  color: #495057;
 }
 
 .comparacion-lista li:last-child {
@@ -175,7 +178,7 @@
   text-align: center;
   font-weight: bold;
   color: #2c3e50;
-  background-color: #e9ecef;
+  background-color: #d4e6f9;
   padding: 10px;
   border-radius: 5px;
   margin-top: 15px;
@@ -196,6 +199,7 @@
 
 .analisis-lista {
   padding-left: 20px;
+  color: #495057;
 }
 
 .analisis-lista li {
@@ -204,12 +208,12 @@
 }
 
 .analisis-recomendacion {
-  background-color: #e9f7ef;
-  border-left: 4px solid #2ecc71;
+  background-color: #d4e6f9;
+  border-left: 4px solid #3498db;
   padding: 15px;
   margin-top: 20px;
   border-radius: 0 5px 5px 0;
-  color: #27ae60;
+  color: #2c3e50;
   font-weight: 500;
 }
 
@@ -218,7 +222,8 @@
   background-color: rgba(255, 255, 255, 0.95) !important;
   border-radius: 5px !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
-  border: 1px solid #e9ecef !important;
+  border: 1px solid #c1d9f0 !important;
+  color: #495057 !important;
 }
 
 .recharts-default-tooltip {
@@ -226,6 +231,37 @@
   border: none !important;
   border-radius: 5px !important;
   padding: 10px !important;
+  color: #495057 !important;
+}
+
+/* Estilos para el gráfico más brillante */
+.recharts-cartesian-grid line {
+  stroke: #d4e6f9 !important;
+  stroke-width: 0.5 !important;
+}
+
+.recharts-cartesian-axis-line {
+  stroke: #3498db !important;
+  stroke-width: 1.5 !important;
+}
+
+.recharts-cartesian-axis-tick-line {
+  stroke: #3498db !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: #333 !important;
+  font-weight: 500 !important;
+}
+
+.recharts-legend-item-text {
+  color: #333 !important;
+  font-weight: 500 !important;
+}
+
+.recharts-text {
+  fill: #333 !important;
+  font-weight: 500 !important;
 }
 
 /* Estilos responsivos */

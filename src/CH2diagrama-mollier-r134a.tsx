@@ -218,6 +218,7 @@ const DiagramaMollier = () => {
                 label={{ value: 'Entalpía (kJ/kg)', position: 'insideBottom', offset: -5 }} 
                 allowDataOverflow
                 stroke="#666"
+                tick={{ fontSize: 12, fontWeight: 500 }}
               />
               <YAxis 
                 type="number" 
@@ -225,21 +226,25 @@ const DiagramaMollier = () => {
                 label={{ value: 'Presión (PSIG)', angle: -90, position: 'insideLeft' }} 
                 allowDataOverflow
                 stroke="#666"
+                tick={{ fontSize: 12, fontWeight: 500 }}
               />
-              <Tooltip formatter={(value, name) => {
-                const nameStr = String(name);
-                if (nameStr === 'Ciclo Real' || nameStr === 'Ciclo Ideal' || nameStr.includes('Curva')) {
-                  return [value, nameStr];
-                } else if (nameStr.includes('Isoterma')) {
-                  return [value, nameStr];
-                }
-                return [`${nameStr}: P=${value} PSIG`, 'Punto del ciclo'];
-              }} />
-              <Legend />
+              <Tooltip 
+                contentStyle={{ backgroundColor: 'white', border: '1px solid #3498db', color: '#333', fontWeight: 500 }}
+                formatter={(value, name) => {
+                  const nameStr = String(name);
+                  if (nameStr === 'Ciclo Real' || nameStr === 'Ciclo Ideal' || nameStr.includes('Curva')) {
+                    return [value, nameStr];
+                  } else if (nameStr.includes('Isoterma')) {
+                    return [value, nameStr];
+                  }
+                  return [`${nameStr}: P=${value} PSIG`, 'Punto del ciclo'];
+                }} 
+              />
+              <Legend wrapperStyle={{ color: '#333', fontWeight: 500 }} />
               
               {/* Curvas de saturación R-134a */}
-              <Line type="monotone" dataKey="p" data={curvaLiquido} name="Curva Líquido R-134a" stroke="#1E88E5" dot={false} />
-              <Line type="monotone" dataKey="p" data={curvaVaporR134a} name="Curva Vapor R-134a" stroke="#1E88E5" dot={false} strokeDasharray="5 5" />
+              <Line type="monotone" dataKey="p" data={curvaLiquido} name="Curva Líquido R-134a" stroke="#1E88E5" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="p" data={curvaVaporR134a} name="Curva Vapor R-134a" stroke="#1E88E5" strokeWidth={2} dot={false} strokeDasharray="5 5" />
               
               {/* Isotermas seleccionadas */}
               {isotermas.map((isoterma, index) => (
@@ -250,24 +255,25 @@ const DiagramaMollier = () => {
                   data={isoterma.puntos}
                   name={`Isoterma ${isoterma.nombre}`}
                   stroke="#FF9800"
-                  strokeWidth={1}
-                  strokeOpacity={0.5}
+                  strokeWidth={1.5}
+                  strokeOpacity={0.7}
                   dot={false}
+                  strokeDasharray="3 3"
                 />
               ))}
               
               {/* Ciclo real - solo mostrar en las pestañas relevantes */}
-              {(tabActiva === 'comparacion' || tabActiva === 'analisis') && (
-                <Line type="linear" dataKey="p" data={cicloReal} name="Ciclo Real" stroke="#D81B60" strokeWidth={2} />
+              {(tabActiva === 'datos' || tabActiva === 'comparacion' || tabActiva === 'analisis') && (
+                <Line type="linear" dataKey="p" data={cicloReal} name="Ciclo Real" stroke="#D81B60" strokeWidth={2.5} />
               )}
               
               {/* Ciclo ideal - solo mostrar en las pestañas relevantes */}
               {(tabActiva === 'comparacion' || tabActiva === 'analisis') && (
-                <Line type="linear" dataKey="p" data={cicloIdeal} name="Ciclo Ideal" stroke="#2E7D32" strokeWidth={2} strokeDasharray="4 2" />
+                <Line type="linear" dataKey="p" data={cicloIdeal} name="Ciclo Ideal" stroke="#2E7D32" strokeWidth={2.5} strokeDasharray="4 2" />
               )}
               
               {/* Puntos del ciclo real - solo mostrar en las pestañas relevantes */}
-              {(tabActiva === 'comparacion' || tabActiva === 'analisis') && puntosReales.map((punto, index) => (
+              {(tabActiva === 'datos' || tabActiva === 'comparacion' || tabActiva === 'analisis') && puntosReales.map((punto, index) => (
                 <Line 
                   key={`real-${index}`}
                   type="monotone"
@@ -276,7 +282,7 @@ const DiagramaMollier = () => {
                   name={`R${punto.punto}`}
                   stroke="#D81B60"
                   strokeWidth={0}
-                  dot={{ r: 6, fill: "#D81B60" }}
+                  dot={{ r: 6, fill: "#D81B60", strokeWidth: 2, stroke: "#fff" }}
                 />
               ))}
               
@@ -290,16 +296,16 @@ const DiagramaMollier = () => {
                   name={`I${punto.punto}`}
                   stroke="#2E7D32"
                   strokeWidth={0}
-                  dot={{ r: 6, fill: "#2E7D32" }}
+                  dot={{ r: 6, fill: "#2E7D32", strokeWidth: 2, stroke: "#fff" }}
                 />
               ))}
               
               {/* Líneas de referencia */}
-              <ReferenceLine y={datosEquipo.evaporador.presion} stroke="#FF9800" strokeDasharray="3 3">
-                <Label value="Presión Evaporador" position="insideRight" />
+              <ReferenceLine y={datosEquipo.evaporador.presion} stroke="#FF9800" strokeDasharray="3 3" strokeWidth={1.5}>
+                <Label value="Presión Evaporador" position="insideRight" offset={10} />
               </ReferenceLine>
-              <ReferenceLine y={datosEquipo.condensador.presion} stroke="#FF9800" strokeDasharray="3 3">
-                <Label value="Presión Condensador" position="insideRight" />
+              <ReferenceLine y={datosEquipo.condensador.presion} stroke="#FF9800" strokeDasharray="3 3" strokeWidth={1.5}>
+                <Label value="Presión Condensador" position="insideRight" offset={10} />
               </ReferenceLine>
             </LineChart>
           </ResponsiveContainer>
